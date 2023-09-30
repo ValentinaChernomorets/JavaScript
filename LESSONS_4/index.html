@@ -1,0 +1,17 @@
+<html>
+    <link rel="stylesheet" href="custom.css">
+
+    <div id="range" onclick="score= 0; shoot()"></div>
+    <div id="l-0"   onclick="score= 33; shoot()"></div>
+    <div id="l-1"   onclick="score= 66; shoot()"></div>
+    <div id="l-2"   onclick="score= 100; shoot()"></div>
+    <div id="l-3"   onclick="score= 160; shoot()"></div>
+    <div id="l-4"   onclick="score= 220; shoot()"></div>
+    <div id="scoreDisplay"><!-- .innerHTML --></div>
+</html>
+<script>
+  let score = 0;
+    function shoot() {
+      scoreDisplay.innerHTML = score;
+  }
+</script>

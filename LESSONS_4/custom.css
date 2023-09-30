@@ -1,0 +1,63 @@
+#range, #l-0, #l-1, #l-2, #l-3, #l-4 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+#range {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+}
+
+#scoreDisplay {
+  position: absolute;
+  top: 110px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid black;
+  height: 30px;
+  width: 400px;
+  text-align: center;
+}
+
+#l-0 {
+  border-radius: 100%;
+  width: 350px;
+  height: 350px;
+  background-color: blue;
+}
+
+#l-1 {
+  border-radius: 100%;
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+#l-2 {
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  background-color: blue;
+}
+
+#l-3 {
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
+
+#l-4 {
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  background-color: blue;
+}/*# sourceMappingURL=custom.css.map */
