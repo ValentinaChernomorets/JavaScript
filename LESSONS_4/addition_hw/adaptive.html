@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS example of adaptive page</title>
+    <style>
+        .title-large {
+            padding: 2em;
+        }
+        .title-medium {
+            padding: 1em;
+        }
+        .title-small {
+            padding: 0.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onresize="adapt()" onload="adapt()">
+<h1 id="heading">JS example of adaptive page</h1>
+    <script>
+        function adapt() {
+            const BREACKPOINT_LARGE = 1200
+            const BREACKPOINT_SMALL = 800
+            let viewportWidth = innerWidth
+
+            if ( viewportWidth >= BREACKPOINT_LARGE ) {
+                heading.className = "title-large"
+            } else if ( viewportWidth >= BREACKPOINT_SMALL & viewportWidth < BREACKPOINT_LARGE) {
+                heading.className = "title-medium"
+            }
+            else {
+                heading.className = "title-small"
+            }
+        }
+    </script>
+</body>
+</html>
