@@ -1,0 +1,65 @@
+<body onkeydown="onKey()">
+    <div id="arena">
+        <div id="ball"></div>
+        <div id="player"></div>
+    </div>
+</body> 
+<style>
+    body {
+        background: #222;
+    }
+    #arena {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        width: 500px;
+        height: 500px;
+        border: 1px solid #888;
+        border-top: 10px solid #999;
+        border-bottom: 1px dashed #999;
+    }
+    #player {
+        width: 50px;
+        height: 10px;
+        background-color: #fff;
+    }
+    #ball {
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(#dd0d0d, #0418ec);
+        border-radius: 100%;
+    }
+</style>
+<script>
+    let playerX = 0
+    let playerY = 0
+    function onKey() {
+        if (event.code == 'ArrowRight') {
+            movePlayerRight()
+        }
+        if (event.code == 'ArrowLeft') {
+            movePlayerLeft()
+        }
+    }
+    function movePlayerRight() {
+        if (playerX < 220) {
+            playerX += 10
+        }
+        if (playerY != 0) {
+            playerX = playerY + 10
+            playerY = playerX
+        }
+        player.style = `transform:translateX(${playerX}px)`
+    }
+    function movePlayerLeft() {
+        if (playerY <= 0 && playerX == 0 && playerY != -220) {
+            playerY -= 10
+        }
+        if (playerX != 0) {
+            playerY = playerX - 10
+            playerX = playerY
+        }
+        player.style = `transform:translateX(${playerY}px)`
+    }
+</script>
