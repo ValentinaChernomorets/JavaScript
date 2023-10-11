@@ -1,0 +1,113 @@
+<body onkeydown="onKey()">
+    <div id="arena">
+        <div id="ball"></div>
+        <div id="player"></div>
+    </div>
+</body> 
+<style>
+    body {
+        background: #222;
+    }
+    #arena {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        width: 500px;
+        height: 500px;
+        border: 1px solid #888;
+        border-top: 10px solid #999;
+        border-bottom: 1px dashed #999;
+    }
+    #player {
+        width: 50px;
+        height: 10px;
+        background-color: #fff;
+    }
+    #ball {
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(#dd0d0d, #0418ec);
+        border-radius: 100%;
+    }
+</style>
+<script>
+    const MAP_WIDTH = 500
+
+    const PLAYER_WIDTH = 50
+    const PLAYER_BALL = 50
+    const PLAYER_STEP = 5
+
+    const TIME_INTERVAL = 100
+
+    let playerX = 0             // Player horizontal coordinate
+    let playerHasTheBall = true // Ball in player hands
+
+    let ballX = 0               // Ball horizontal coordinate
+    let ballY = 0               // Ball vertical coordinate
+
+    let ballSpeedX = Math.random() * 20 - 10
+    let ballSpeedY = -10
+
+    let mapBorderTop = MAP_WIDTH - PLAYER_BALL - 20
+    let mapBorderLeftRight = MAP_WIDTH / 2 - PLAYER_BALL / 2
+   
+    function onKey() {
+        switch(event.code) {
+            case 'ArrowRight':
+                movePlayerRight();
+                break;
+            case 'ArrowLeft':
+                movePlayerLeft();
+                break;
+            case 'Space':
+                pushBall();
+                break;
+        }
+    }
+
+    function pushBall() {
+       playerHasTheBall = false
+       setInterval(moveBall, TIME_INTERVAL)
+    }
+
+    function moveBall() {
+        ballX += ballSpeedX
+        ballY += ballSpeedY
+        if (ballY < - mapBorderTop) {
+            ballSpeedY *= -1
+        }
+        if (ballY > 0) {
+            ballSpeedY *= -1
+        }
+        if (ballX > mapBorderLeftRight || ballX < - mapBorderLeftRight) {
+            ballSpeedX *= -1
+        }
+        render()
+    }
+
+    function render () {
+        player.style = `transform:translateX(${playerX}px)`
+        ball.style = `transform: translateX(${ballX}px) translateY(${ballY}px)`
+    }
+
+    function movePlayerRight() {
+        if (playerX < MAP_WIDTH / 2 - PLAYER_WIDTH / 2) {
+            playerX += PLAYER_STEP
+            if (playerHasTheBall) {
+                ballX = playerX
+            }
+        render()
+        }
+    }
+
+    function movePlayerLeft() {
+        if (playerX > - MAP_WIDTH / 2 + PLAYER_WIDTH / 2) {
+            playerX -= PLAYER_STEP
+            if (playerHasTheBall) {
+                ballX = playerX
+            }
+        render()
+        }
+    }
+</script>
