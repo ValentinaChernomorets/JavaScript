@@ -74,14 +74,21 @@
     function moveBall() {
         ballX += ballSpeedX
         ballY += ballSpeedY
-        if (ballY < - mapBorderTop) {
+        if (ballY < -mapBorderTop) {
             ballSpeedY *= -1
         }
-        if (ballY > 0) {
-            ballSpeedY *= -1
-        }
-        if (ballX > mapBorderLeftRight || ballX < - mapBorderLeftRight) {
+        if (ballX < -mapBorderLeftRight) {
             ballSpeedX *= -1
+        }
+        if (ballX > mapBorderLeftRight) {
+            ballSpeedX *= -1
+        }
+        if (
+            ballY > 0 && ballY < 50 
+            && 
+            ballX > playerX-20 && ballX < playerX + 20
+        ) {
+        ballSpeedY *= -1
         }
         render()
     }
