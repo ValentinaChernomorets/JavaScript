@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS | LOOPS | WHILE | GALARY </title>
+    <style>
+        img {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        for (let i = 1; i<=9; i++) {
+            container.innerHTML += `<img src="images/${i}.jpg">`
+            if (i == 3 || i == 6) {
+                container.innerHTML += `<br>`
+            }
+        }
+    </script>
+</body>
+</html>

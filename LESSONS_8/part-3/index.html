@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-color:  #333;
+            color: white;
+        }
+        table td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+   <script>
+    // create HTML table using JS
+    debugger // stop execution
+             // starts code in DEBUG MODE
+    let table = `<table border="1">
+                 <tr>`
+    for (let td = 1; td <= 9; td++) {
+        if (td == 1 || td == 5 || td == 9) {
+            table += `<td style="background: red">${td}</td>`
+        }
+        else {
+            table += `<td>${td}</td>`
+        }
+        if (td == 3 || td == 6) {
+            table += `</tr><tr>` 
+        }
+    }
+    table += `</tr>
+                </table>`
+    container.innerHTML = table
+   </script>
+</body>
+</html>
