@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            line-height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+    // 2D outer + inner loops
+    //  debugger
+    let html = ``
+    for (let r = 1; r <= 10; r++) {
+        // draws one row
+        for (let c = 1; c <= 10; c++) {
+            if (c == 1 || c == 10 || r == 1 || r == 10) {
+                html += `▦`
+            }
+            else {
+                html += `▢`
+            }
+        }
+        html += `<br>`
+        // draws one row
+    }
+    container.innerHTML = html
+    </script>
+</body>
+</html>
