@@ -1,0 +1,44 @@
+ <!-- 
+HW1:
+- second item -> 3 subitems (3,4,5)
+- third item -> 2 subitems (6,7)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>2 level list</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        let ul = `<ul>`
+        for (let i=1; i<=3; i++) {
+            let sub_ul = ``
+            if ( i == 1 ) { 
+                sub_ul = `<ul>`
+                for (let j=1; j<=2; j++){
+                    sub_ul += `<li>Item ${j}</li>`
+                }
+                sub_ul += `</ul>`
+            }
+            if (i == 2) {
+                sub_ul = `<ul>`
+                for (let k=3; k<=5; k++){
+                    sub_ul += `<li>Item ${k}</li>`
+                }
+                sub_ul += `</ul>`
+            }
+            if (i == 3) {
+                sub_ul = `<ul>`
+                    for (let l=6; l<=7; l++){
+                        sub_ul += `<li>Item ${l}</li>`
+                    }
+                sub_ul += `</ul>`
+            }
+            ul += `<li>Item ${i}${sub_ul}</li>`
+        }
+        ul += `</ul>`
+        container.innerHTML = ul
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!-- LIFT -->
+ <style>
+    #building, #user {
+        border: 2px solid black;
+        height: 1100px;
+        width: 100px;
+        float: left;
+    }
+    #user button {
+      width: 100px;
+      height: 100px;
+    }
+    .arrow {
+      background: #356;
+      font-size: 80px;
+    }
+    #lift {
+        width: 100px;
+        height: 100px;
+        background: #345;
+        transition: 1s;
+        font-size: 75px;
+    }
+ </style>
+
+<div id="building">
+   <div id="lift" style="transform: translateY(900px);">👫</div>
+</div>
+<div id="user">
+   <button class="arrow" onclick="moveUp()">▲</button>
+   <button onclick="floor=8; moveLift()">8</button>
+   <button onclick="floor=7; moveLift()">7</button>
+   <button onclick="floor=6; moveLift()">6</button>
+   <button onclick="floor=5; moveLift()">5</button>
+   <button onclick="floor=4; moveLift()">4</button>
+   <button onclick="floor=3; moveLift()">3</button>
+   <button onclick="floor=2; moveLift()">2</button>
+   <button onclick="floor=1; moveLift()">1</button>
+   <button onclick="floor=0; moveLift()">0</button>
+   <button onclick="moveDown()" class="arrow">▼</button>
+</div>
+ <script>
+   let floor = 0
+   function moveLift() {
+     let y = 900 - floor * 100
+     lift.style = `transform: translateY(${y}px);`
+   }
+   function moveDown() {
+      if (floor >= 1) {
+         floor --
+         moveLift();
+      }
+   }
+   function moveUp() {
+      if (floor <= 7) {
+         floor ++
+         moveLift();
+      }
+   } 
+ </script>

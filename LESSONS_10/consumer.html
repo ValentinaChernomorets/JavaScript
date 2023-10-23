@@ -1,0 +1,26 @@
+<!-- 
+// CONSUMER - receives / consumes
+    function consume (n) {
+        console.log("n=" + n)
+// HW4
+// alter consume(n) so it outputs in a div with id #result
+} -->
+<style>
+    #result {
+        background-color: blueviolet;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<div id="result"></div>
+
+<script>
+    let n = 300;
+    function consume (n) {
+        result.innerHTML = ("n= " + n);
+    }
+    consume(n);
+</script>
