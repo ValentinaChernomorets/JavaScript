@@ -1,0 +1,97 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <title>VOLLEY GAME</title>
+    <style>
+        body {
+            background: #333;
+        }
+        #field {
+            border-top: 5px double white;
+            border-bottom: 1px solid white;
+            position: relative;
+        }
+        #ball {
+            border-radius: 100%;
+            background: radial-gradient(white, green);
+            position: absolute;
+        }
+        #player {
+            background-color: orangered;
+            position: absolute;
+        }
+    </style>
+ </head>
+ <body onkeydown="onKeyboard()">
+    <div id="field">
+        <div id="ball"></div>
+        <div id="player"></div>
+    </div>
+    <script>
+        const F_WIDTH = 500
+        const F_HEIGHT = 500
+
+        const B_WIDTH = 50
+        const B_HEIGHT = 50
+        let bBottom = 0
+        let bLeft = 0
+
+        const P_WIDTH = 100
+        const P_HEIGHT = 50
+        let pBottom = 0
+        let pLeft = 0
+
+        field.style = `
+        width: ${F_WIDTH}px;
+        height: ${F_HEIGHT}px;
+        `
+        function updateBallStyles() {
+            ball.style = `
+                width: ${B_WIDTH}px;
+                height: ${B_HEIGHT}px;
+                left: ${bLeft}px;
+                bottom: ${bBottom}px;
+            `
+        }
+        function updatePlayerStyle () {
+            player.style = `
+                width: ${P_WIDTH}px;
+                height: ${P_HEIGHT}px;
+                left: ${pLeft}px;
+                bottom: ${pBottom - P_HEIGHT -1}px;
+            `
+        }
+        updatePlayerStyle ()
+        updateBallStyles ()
+        function onKeyboard() {
+        // HW2: Change if/else ---> switch/case
+            switch(event.code) {
+            // HW1: Finish the movement to the left
+                case 'ArrowLeft':
+                    if (pLeft > 0) {
+                        pLeft -=10;
+                    }
+                    updatePlayerStyle();
+                break;
+                case 'ArrowRight':
+                    if (pLeft < F_WIDTH - P_WIDTH) {
+                        pLeft +=10;
+                    }
+                    updatePlayerStyle();
+                break;
+                case 'Space':
+                    throwBall(); 
+            }
+        }
+
+        function throwBall () {
+            setInterval(moveBall, 100)
+        }
+
+        function moveBall () {
+            bBottom += 10
+            updateBallStyles();
+        }
+    </script>
+ </body>
+ </html>
