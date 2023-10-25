@@ -28,24 +28,31 @@
         <div id="player"></div>
     </div>
     <script>
-        const F_WIDTH = 500
-        const F_HEIGHT = 500
+        const F_WIDTH = 500;
+        const F_HEIGHT = 500;
 
-        const B_WIDTH = 50
-        const B_HEIGHT = 50
-        let bBottom = 0
-        let bLeft = 0
+        const B_WIDTH = 50;
+        const B_HEIGHT = 50;
+        let bBottom = 0;
+        let bLeft = 0;
+        let bSpeedV = 0;
+        let bSpeedH = 0;
 
-        const P_WIDTH = 100
-        const P_HEIGHT = 50
-        let pBottom = 0
-        let pLeft = 0
+        const P_WIDTH = 100;
+        const P_HEIGHT = 50;
+        let pBottom = 0;
+        let pLeft = 0;
+        let pBallInHands = true;
 
+        let timerID = null;
+        let score = 0;
+
+        bLeft = P_WIDTH / 2 - B_WIDTH / 2 + pLeft;
         field.style = `
         width: ${F_WIDTH}px;
         height: ${F_HEIGHT}px;
         `
-        function updateBallStyles() {
+        function updateBallStyle() {
             ball.style = `
                 width: ${B_WIDTH}px;
                 height: ${B_HEIGHT}px;
@@ -58,39 +65,66 @@
                 width: ${P_WIDTH}px;
                 height: ${P_HEIGHT}px;
                 left: ${pLeft}px;
-                bottom: ${pBottom - P_HEIGHT -1}px;
+                bottom: ${pBottom - P_HEIGHT - 1}px;
             `
         }
-        updatePlayerStyle ()
-        updateBallStyles ()
+        updatePlayerStyle();
+        updateBallStyle();
         function onKeyboard() {
-        // HW2: Change if/else ---> switch/case
             switch(event.code) {
-            // HW1: Finish the movement to the left
                 case 'ArrowLeft':
-                    if (pLeft > 0) {
+                    if (pLeft >= 10) {
                         pLeft -=10;
                     }
-                    updatePlayerStyle();
                 break;
                 case 'ArrowRight':
                     if (pLeft < F_WIDTH - P_WIDTH) {
                         pLeft +=10;
                     }
-                    updatePlayerStyle();
                 break;
                 case 'Space':
-                    throwBall(); 
+                    throwBall();
+                break;
             }
+            if (pBallInHands) {
+                bLeft = P_WIDTH / 2 - B_WIDTH / 2 + pLeft;
+            }
+            updateBallStyle();
+            updatePlayerStyle();
         }
 
         function throwBall () {
-            setInterval(moveBall, 100)
+            pBallInHands = false;
+            bSpeedH = Math.random() * 6 - 3;
+            bSpeedV = 10;
+            timerID = setInterval(moveBall, 100);
+            // remember the timer ID
         }
 
         function moveBall () {
-            bBottom += 10
-            updateBallStyles();
+            bLeft += bSpeedH;
+            bBottom += bSpeedV;
+            if (bBottom > F_HEIGHT - B_HEIGHT) {
+                bSpeedV = -10;
+                bSpeedH = Math.random() * 10 - 5;
+            }
+            if (bBottom <= 0) {
+                clearInterval(timerID);
+                let pLeftSide  = pLeft;
+                let pRightSide = pLeft + P_WIDTH;
+                let bLeftSide  = bLeft;
+                let bRightSide = bLeft + B_WIDTH;
+                if ( pLeftSide <= bLeftSide && pRightSide >= bRightSide ) {
+                    score +=1;
+                    console.log("Catch:" + score);
+                }
+                else {
+                    score -=1;
+                    console.log("Fall:"+ score);
+                    bLeft = P_WIDTH / 2 - B_WIDTH / 2 + pLeft;
+                }
+            }
+            updateBallStyle();
         }
     </script>
  </body>
