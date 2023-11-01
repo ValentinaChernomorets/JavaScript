@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POCKET CALCULATOR</title>
+    <style>
+        body {
+            background-color: #333;
+            font-family: Arial;
+            font-size: 25px;
+        }
+        #calculator {
+            position: absolute; 
+            left: 0; 
+            right: 0; 
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #555;
+            padding: 5px;
+        }
+        #resScreen {
+            border: 1px solid #555;
+            height: 30px;
+            color: white;
+            padding: 3px;
+            margin-bottom: 5px;
+        }
+        #inputs input {
+            display: block;
+            padding: 10px;
+        }
+        #controls {
+            margin-top: 10px;
+        }
+        #controls button {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <div id="resScreen">0</div>
+        <div id="inputs">
+            <input type="text" id="inputA" placeholder="value A">
+            <input type="text" id="inputB" placeholder="value B">
+        </div>
+        <div id="controls">
+            <button onclick="operation('add')">+</button>
+            <button onclick="operation('minus')">-</button>
+            <button onclick="operation('division')">/</button>
+            <button onclick="operation('multiply')">*</button>
+            <button onclick="reset()">RESET</button>
+        </div>
+    </div>
+    <script>
+        function operation(value) {
+            let res = ''
+            let a = parseInt(inputA.value)
+            let b = parseInt(inputB.value)
+            if (isNaN(a) || isNaN(b)) {
+                res = "ERROR";
+            } else {
+                switch(value) {
+                    case 'add':
+                        res = a + b;
+                    break;
+                    case 'minus':
+                        res = a - b;
+                    break;
+                    case 'division':
+                        res = a / b;
+                    break;
+                    case 'multiply':
+                        res = a * b;
+                    break;
+                }       
+            }
+            resScreen.innerHTML = res
+        }
+        function reset() {
+            inputA.value = ''
+            inputB.value = ''
+            resScreen.innerHTML = 0
+        }
+    </script>
+</body>
+</html>

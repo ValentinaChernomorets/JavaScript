@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CAROUSEL RANDOM SQUARE</title>
+    <style>
+        body {
+            background-color: #333;
+        }
+        #carousel {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            border: 2px solid white;
+        }
+        #carousel div {
+            width: 100px;
+            height: 100px;
+            float: left;
+            box-sizing: border-box;
+            transition: 1s;
+        }
+        #buttonsSlide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #buttonsSlide button {
+            width: 100px;
+            height: 50px;
+            border: 5px solid black;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="carousel"></div>
+    <div id="buttonsSlide">
+        <button onclick="prevSlide()">PREV</button>
+        <button onclick="nextSlide()">NEXT</button>
+    </div>
+    <script>
+        let slide = 1;
+        function renderSlide() {
+            // Clear the last slide //
+            carousel.innerHTML = ``
+            for (let r = 0; r < 5; r++) {
+                for (let c = 0; c < 5; c++ ) {
+                    carousel.innerHTML += `
+                        <div id="sq-${r}-${c}" style="
+                            background-image: url(images/${slide}.jpg);
+                            background-position:
+                                ${c * -100}px
+                                ${r * -100}px;
+                            transform:
+                                translateX(${-300 + Math.random() * 600}px)
+                                translateY(${-300 + Math.random() * 600}px)
+                                rotate(${Math.random() * 360}deg)
+                                ;
+                                opacity: 0;
+                        "></div>
+                        `
+                }
+            }
+            // Start animation //
+            setTimeout ( function() {
+                for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 5; c++ ) {
+                        window[`sq-${r}-${c}`].style.transform = "translateX(0) translateY(0) rotate(0)"
+                        window[`sq-${r}-${c}`].style.opacity = "1"
+                    }
+                }
+            }, 1000)
+        }
+        function nextSlide() {
+            if (slide < 3) {
+                slide++
+            } else {
+                slide = 1
+            }
+            renderSlide()
+        }
+        function prevSlide() {
+            if (slide == 1) {
+                slide = 3
+            } else {
+                slide--
+            }
+            renderSlide()
+        }
+        renderSlide()
+    </script>
+</body>
+</html>
