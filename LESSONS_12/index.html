@@ -1,0 +1,47 @@
+<body>
+    <style>
+        #indicators {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            margin: 10px;
+            font-size: 20px;
+        }
+    </style>
+    <div id="carousel">
+        <!-- carousel here -->
+        <!-- INDICATORS -->
+        <div id="indicators">
+        </div>
+        <!-- /INDICATORS -->
+    </div> 
+    <script>
+        let activeN = 2
+        const renderIndicators = () => {
+            let html = `<button>◁</button>` // START //
+            let n = 3
+            while (n) { // STEP //
+                let color = (n == activeN) ? "orange" : "black";
+                html += `<img src="thumbnails/${n}-150x150.jpg" 
+                              style="
+                              border: 5px solid ${color};
+                              margin: 5px;
+                              "
+                        />`
+                n--
+            }
+            // END //
+            html += `<button onclick="nextSlide()">▷</button>`
+            indicators.innerHTML = html
+        }
+        const nextSlide = () => {
+            activeN++
+        }
+        renderIndicators()
+    </script>
+</body>
