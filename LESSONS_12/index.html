@@ -1,47 +1,120 @@
-<body>
-    <style>
-        #indicators {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        button {
-            width: 50px;
-            height: 50px;
-            border: 2px solid black;
-            margin: 10px;
-            font-size: 20px;
-        }
-    </style>
-    <div id="carousel">
-        <!-- carousel here -->
-        <!-- INDICATORS -->
-        <div id="indicators">
-        </div>
-        <!-- /INDICATORS -->
-    </div> 
-    <script>
-        let activeN = 2
-        const renderIndicators = () => {
-            let html = `<button>◁</button>` // START //
-            let n = 3
-            while (n) { // STEP //
-                let color = (n == activeN) ? "orange" : "black";
-                html += `<img src="thumbnails/${n}-150x150.jpg" 
-                              style="
-                              border: 5px solid ${color};
-                              margin: 5px;
-                              "
-                        />`
-                n--
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Carousel Bootstrap and JS</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body onload="renderIndicators()">
+        <style>
+            /* HW3: Use flex. */
+            #indicators {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-            // END //
-            html += `<button onclick="nextSlide()">▷</button>`
-            indicators.innerHTML = html
-        }
-        const nextSlide = () => {
-            activeN++
-        }
-        renderIndicators()
-    </script>
-</body>
+            button {
+                border: 2px solid black;
+                margin: 10px;
+            }
+        </style>
+        <div id="carousel">
+            <!-- BOTSTRAP CAROUSEL -->
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item">
+                    <img src="images/1-500x500.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item active">
+                    <img src="images/2-500x500.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="images/3-500x500.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            <!-- /BOTSTRAP CAROUSEL -->
+            <!-- carousel -->
+            <!-- INDICATORS -->
+            <!--I don't use in class "text-center".
+                Because in HW3 was did it with flex. -->
+            <div id="indicators" class="container-fluid mt-2">
+            </div>
+            <!-- /INDICATORS -->
+        </div>
+        <!-- JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script>
+            const MIN_N = 1
+            const MAX_N = 3
+            let activeN = 2
+            const renderIndicators = () => {
+                let html = `<button class="btn btn-primary btn-lg rounded-pill" onclick="prevSlide()">
+                                <i class="bi bi-caret-left"></i>
+                            </button>` // START //
+                // HW1: Reverse n.
+                // HW2: Use instead of FOR use WHILE.
+                let n = MAX_N
+                while (n) { // STEP //
+                    let color = (n == activeN) ? "orange" : "black";
+                    html += `<img src="thumbnails/${n}-150x150.jpg" 
+                                style="
+                                border: 5px solid ${color};
+                                margin: 5px;
+                                "
+                            />`
+                    n--
+                }
+                // END //
+                html += `<button class="btn btn-primary btn-lg rounded-pill" onclick="nextSlide()">
+                            <i class="bi bi-caret-right"></i>
+                         </button>`
+                indicators.innerHTML = html
+            }
+            // Influence of HW1: the implementation of getting a parameter activeN is changed, because the images number is reverse.
+            const prevSlide = () => {
+                // HW4*: activeN < MAX_N ? activeN + 1: MIN_N - rewrite with if/else
+                if (activeN < MAX_N) {
+                    activeN++
+                } else {
+                    activeN = MIN_N
+                }
+                joinIndiBoo()
+                renderIndicators()
+            }
+            const nextSlide = () => {
+                // HW4*: activeN = activeN > MIN_N ? activeN - 1: MAX_N - rewrite with if/else
+                if (activeN > MIN_N) {
+                    activeN--
+                } else {
+                    activeN = MAX_N
+                }
+                joinIndiBoo()
+                renderIndicators()
+            }
+            const joinIndiBoo = () => {
+                // Equivalent bootstrap number.
+                let booN = activeN - 1
+                // Find the bootstrap indicator by attribute.
+                let indiB = document.querySelector(`[data-bs-slide-to="${booN}"]`)
+                // Make a virtual click.
+                indiB.dispatchEvent( new Event("click") )
+            }
+        </script>
+    </body>
+</html>
