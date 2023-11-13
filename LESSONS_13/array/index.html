@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SALARY GRAPH</title>
+    <style>
+        .title {
+            margin: 15px;
+        }
+        #graph {
+            width: 720px;
+            height: 500px;
+            border: 1px solid black;
+            /* display item in bottom */
+            display: flex;
+            align-items: end;
+        }
+        #graph .bar {
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">SALARY GRAPH</div>
+    <div id="graph"></div>
+    <script>
+        let salary = [
+            3000, // 0
+            3000, // 1
+            3000, // 2
+            4500, // 3
+            4500, // 4
+            4700, // 5
+            4700, // 6
+            4700, // 7
+            4700, // 8
+            4700, // 9
+            6000, // 10
+            6000, // 11
+        ]
+       // HW1: 
+       // Reverse the graph
+        for (let i=11; i>=0; i--) {
+            console.log(salary);
+            graph.innerHTML += `
+            <div class="bar" 
+                 style = "height: ${salary[i]/20}px" >
+                 </div>
+                 `
+        }
+    </script>
+</body>
+</html>
