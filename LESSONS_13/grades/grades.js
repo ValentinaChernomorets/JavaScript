@@ -5,8 +5,9 @@ let grades = [0, 0, 0]
 // IF all good -> insert in array 
 // ELSE --> print an error message
 for (let i = 0; i <= 2; i++) {
-    let userInput = prompt("Please enter the grade:", '')
-    if (!isNaN(userInput) && isNumberInRange(userInput, 1, 10)) {
+    let userInput = prompt("Please enter the grade:", '');
+    userInput = parseFloat(userInput);
+    if (userInput !== null && !isNaN(userInput) && isNumberInRange(userInput, 1, 10)) {
         grades[i] = userInput;
     } else {
         alert("The number is not in range 1-10 or it is not a number. Please enter the corect number!");
