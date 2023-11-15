@@ -1,0 +1,80 @@
+<!-- AD ROTATOR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advertising of albums Synthwave</title>
+    <style>
+        body {
+            background-color: #112;
+        }
+        #ad {
+            border: 1px solid rgb(149, 5, 154);
+            color: white;
+            padding: 1em;
+            font-family: Arial;
+            position: absolute;
+            width: 800px;
+            height: 500px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div id="ad">
+    </div>
+    <script>
+        let adTitles = [
+            "OutRun",
+            "Reborn",
+            "Stranger Things"
+        ]
+        let adTexts = [
+            "OutRun is the debut studio album by French electronic musician Kavinsky, <br/> released on 22 February 2013 by Record Makers, Vertigo Records and Mercury Records.",
+            "Reborn is the second studio album by French electronic musician Kavinsky, <br/> released on 25 March 2022 by Record Makers through Virgin France.",
+            "Stranger Things is the original soundtrack for the first season of the Netflix <br/> series of the same name.",
+        ]
+        let adImages = [
+            "images/OutRun.png",
+            "images/Reborn.png",
+            "images/Stranger_Things.png",
+        ]
+        // HW1:
+        // create another array, with the images for each ad
+        // rotate the images in sync with the texts
+        let adIndex = 0
+        function showAd () {
+            ad.innerHTML = `
+                <div class="content">
+                    <h1>${adTitles[adIndex]}</h1>
+                    <p>${adTexts[adIndex]}</p>
+                    <img src="${adImages[adIndex]}"><img>
+                </div>
+               `
+        }
+        function rotateAds () {
+            let lastTitle = adTitles.pop()
+            adTitles.unshift(lastTitle)
+
+            let lastText = adTexts.pop()
+            adTexts.unshift(lastText)
+
+            let lastImage = adImages.pop()
+            adImages.unshift(lastImage)
+
+            showAd()
+        }
+        setInterval(rotateAds, 3000)
+        showAd()
+    </script>
+</body>
+</html>
