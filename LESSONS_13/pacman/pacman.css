@@ -1,0 +1,61 @@
+body {
+    background-color: #123;
+}
+#map {
+    width: 500px;
+    height: 500px;
+    border: 3px solid #666;
+}
+#map div {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #888;
+    float: left;
+}
+#map .pac {
+    background-image: url(images/Cute-Ball-Games-icon.png);
+}
+#map .coin {
+    background-image: url(images/coin-euro-icon.png);
+}
+#map .bomb {
+    background-image: url(images/12158-bomb-icon.png);
+}
+#map .heart {
+    background-image: url(images/Heart-icon.png);
+}
+#stats {
+    width: 505px;
+    height: 30px;
+    border: 3px solid #777;
+    color: white;
+    box-sizing: border-box;
+}
+#statsCoins {
+    width: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#live {
+    width: 505px;
+    height: 30px;
+    border: 3px solid #777;
+    color: white;
+    box-sizing: border-box;
+}
+#liveHeart {
+    width: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#gamePacOver {
+    width: 500px;
+    height: 500px;
+    float: left;
+}
+#reloadGame {
+    width: 90px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 100px;
+}
