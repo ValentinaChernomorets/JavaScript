@@ -1,0 +1,30 @@
+body {
+    background-color: #123;
+}
+#navBar {
+    border: 1px solid #567;
+    display: inline-block;
+    font-family: Arial;
+    font-size: 25px;
+}
+#navBar ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+#navBar ul li {
+    padding: 10px 30px;
+    background-color: #456;
+    border-bottom: 1px solid #678;
+}
+#navBar ul li a {
+   text-decoration: none; 
+   color: #DDD;
+}
+#navBar ul li:last-child {
+    border: none
+}
+#navBar ul li i {
+    color: yellow;
+    font-size: 25px;
+}

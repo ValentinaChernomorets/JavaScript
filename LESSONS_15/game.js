@@ -11,7 +11,7 @@ let players = [
         xp: 2_000_000,
         skills: ["silent", "mvp"],
     },
-    { // 1
+    { // 2
         name: "Peters0n",
         rating: 2.5,
         xp: 1_000,

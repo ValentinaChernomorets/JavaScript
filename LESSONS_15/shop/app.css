@@ -1,0 +1,28 @@
+#cartDiv {
+    padding: 10px;
+    font-size: 30px;
+    border-bottom: 2px solid green;
+    margin-bottom: 10px;
+    text-align: right;
+}
+#catalogDiv {
+    padding: 20px;
+    border: 1px solid #999;
+}
+#catalogDiv .product {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #666;
+    margin-bottom: 40px;
+}
+#catalogDiv .product img {
+    width: 200px;
+}
+#catalogDiv .product button {
+    padding: 10px 20px;
+    background-color: darkorange;
+    color: white;
+    border: none;
+}
+#catalogDiv .product button:disabled {
+    background-color: darkred;
+}
