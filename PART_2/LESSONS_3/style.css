@@ -1,0 +1,22 @@
+body {
+    background-image: linear-gradient(rgb(151, 3, 151), rgb(92, 9, 39));
+    background-repeat: no-repeat;
+    nav {
+        width: 200px;
+        height: auto;
+        background-color:  rgb(43, 1, 43);
+        .nav-link {
+            color: white;
+            i {
+                color: rgb(151, 3, 151);
+            }
+            .bi-command {
+                color: rgb(255, 153, 0);
+                font-size: 35px;
+            }
+            &:hover {
+                color: rgb(255, 153, 0);
+            } 
+        }
+    }
+}
