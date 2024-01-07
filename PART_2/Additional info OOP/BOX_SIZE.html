@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>-</button>
+    <button onclick="increase()">+</button>
+    <div style="width: 100px; height: 100px; background: red;">
+        BOX
+    </div>
+    <script>
+        function increase () {
+            //1. Find the div
+            let div = document.body.children[2]
+            //2. Find the size
+            let size = parseInt( div.style.width )
+            size += 10
+            div.style.width = size + "px"
+            div.style.height = size + "px"
+        }
+    </script>
+</body>
+</html>

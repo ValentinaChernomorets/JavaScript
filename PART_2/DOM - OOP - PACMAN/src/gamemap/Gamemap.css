@@ -1,0 +1,37 @@
+.map {
+    width: 500px;
+    height: 500px;
+    border: 10px solid #0034e0;
+}
+
+.map > div {
+    border: 1px solid #1a03ec;
+    width: 48px;
+    height: 48px;
+    float: left;
+}
+
+.stats {
+    width: 518px;
+    height: 30px;
+    border: 4px solid #1a03ec;
+    color: white;
+    box-sizing: border-box;
+}
+.liveHp {
+    width: 518px;
+    height: 30px;
+    border: 4px solid #1a03ec;
+    color: white;
+    box-sizing: border-box;
+}
+#statsCoins {
+    width: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#liveHeart {
+    width: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+}

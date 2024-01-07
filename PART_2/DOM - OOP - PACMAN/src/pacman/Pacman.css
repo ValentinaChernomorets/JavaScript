@@ -1,0 +1,26 @@
+.pacman {
+    background-image: url(images/Pacman-icon.png);
+}
+
+.pacman.exploading {
+    background-image:  url(images/explosion.gif),
+                       url(images/Pacman-icon.png);
+    background-size: contain, contain;
+}
+.live {
+    height: 4px;
+    /* width: 48px; */
+    background-color: rgb(252, 0, 0);
+
+}
+.gamePacOver {
+    width: 500px;
+    height: 500px;
+    float: left;
+    background-image: url('images/gameOver.jpg');
+}
+/* HW3: health poin = 100
+    step on bomp - -25
+    state of live - line -------
+    add timer for bomb - fire end
+*/
