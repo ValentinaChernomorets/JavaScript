@@ -1,4 +1,5 @@
-class Food {
+// DATA SCHEMA
+class MenuItem {
     constructor (name, image, price) {
         this.name = name
         this.image = image
@@ -6,56 +7,12 @@ class Food {
     }
 }
 
-class Drinks {
-    constructor (name, image, price) {
-        this.name = name
-        this.image = image
-        this.price = price
-    }
+class Food extends MenuItem {
 }
 
-let renderMenuForm = (rootElements, menu) => {
-    // Food //
-    let fieldsetFormFood = renderForm(rootElements,'Food')
-    let formFood = document.createElement('form') 
-    menu.food.forEach(fooData => {
-        renderLable(fooData, formFood)
-    });
-    fieldsetFormFood.appendChild(formFood)
-
-    // Drinks //
-    let fieldsetFormDrinks = renderForm(rootElements,'Drinks')
-    let formDrinks = document.createElement('form')
-    menu.drinks.forEach(drinksData => {
-        renderLable(drinksData, formDrinks)
-    })
-    fieldsetFormDrinks.appendChild(formDrinks)
+class Drinks extends MenuItem {
 }
-
-function renderForm (rootElements, nameForm) {
-    let fieldsetForm = document.createElement('fieldset')
-    let legendForm = document.createElement('legend')
-    let legendText = document.createTextNode(`${nameForm}`)
-
-    rootElements.appendChild(fieldsetForm)
-    fieldsetForm.appendChild(legendForm)
-    legendForm.appendChild(legendText)
-
-    return fieldsetForm
-}
-
-function renderLable (data, form) {
-    let label = document.createElement('label')
-    let input = document.createElement('input')
-    input.setAttribute("type", "checkbox")
-    let labelText = document.createTextNode(
-        `${data.name} ${data.price}`
-    )
-    label.appendChild(input)
-    label.appendChild(labelText)
-    form.appendChild(label)
-}
-
+// DATA
 let data = {
     menu: {
         food: [
@@ -71,8 +28,78 @@ let data = {
         ]
     }
 }
+// RENDERING
+const renderMenuItem = (menuItem, parentElement, handler) => {
+    let label = document.createElement('label')
+    let input = document.createElement('input')
+    input.setAttribute("type", "checkbox")
+    let labelText = document.createTextNode(
+        `${menuItem.name} ${menuItem.price}`
+    )
+    label.appendChild(input)
+    label.appendChild(labelText)
+    parentElement.appendChild(label)
+
+    //  bind event handling
+    input.addEventListener('change', handler) // <--- STRONG COUPLING ->
+}
+
+const renderItemSet = (title) => {
+    let fieldset = document.createElement('fieldset')
+    let legend = document.createElement('legend')
+    let labelText = document.createTextNode(title)
+
+    legend.appendChild(labelText)
+    fieldset.appendChild(legend)
+    return fieldset
+}
+
+let renderMenuForm = (rootElements, menu) => {
+    let form = document.createElement('form') 
+    let foodSet = renderItemSet('Food')
+    let drinkSet = renderItemSet('Drinks')
+
+    menu.food.forEach(foodData => {
+        renderMenuItem(foodData, foodSet, toggleMenuItemHandler)
+    });
+    menu.food.forEach(drinkData => {
+        renderMenuItem(drinkData, drinkSet, toggleMenuItemHandler)
+    });
+
+    form.appendChild(foodSet)
+    form.appendChild(drinkSet)
+
+    rootElements.appendChild(form)
+}
+
+const renderMenuItemQuantity = () =>  {
+    
+    let div = document.createElement('div')
+    let btnDec = document.createElement('button')
+        btnDec.innerText = "-"
+    let InputQ = document.createElement('input')
+        InputQ.value = 1
+    let btnInc = document.createElement('button')
+        btnInc.innerText = "+"
+    div.appendChild(btnDec)
+    div.appendChild(InputQ)
+    div.appendChild(btnInc)
+
+    return div
+}
+
+// EVENTS 
+const toggleMenuItemHandler = ( event ) => {
+    let toggledInput = event.target
+    let label = toggledInput.parentElement
+
+    let menuItemQuantity = renderMenuItemQuantity()
+
+    // label.parentElement.insertBefore(div, label.nextElementSibling)
+    label.after(menuItemQuantity)
+}
+
 // ------------------------------------------
  // HW* use another way
 const contentSection = document.querySelector("#content")
-
 renderMenuForm(contentSection, data.menu)
