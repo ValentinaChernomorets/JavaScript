@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocomplete / Form History</title>
+</head>
+<body>
+    <form>
+        <h1>SEND WEB SMS</h1>
+        <input type="text" placeholder="enter to phone number">
+        <br>
+        <input type="text" placeholder="enter from phone number">
+        <br>
+        <textarea placeholder="enter sms text"></textarea>
+        <br>
+        <button>SEND</button>
+    </form>
+    <script>
+        // HW1: refactor ---> addEventListener
+        addEventListener('load', function() {
+            load()
+            loadData()
+        })
+
+        // Function load - when load page add event listener to button.
+        function load () {
+            let btn = document.forms[0].lastElementChild
+            btn.addEventListener("click", saveData)
+        }
+
+        // Function saveData - save data to localStorage.
+        function saveData() {
+            let i1 = document.forms[0].children[1]
+            let i2 = document.forms[0].children[3]
+            let data = {
+                phoneTo: i1.value,
+                phoneFrom: i2.value,
+            }
+            localStorage.setItem(
+                "data", JSON.stringify(data)
+            )
+        }
+        // Function loadData - parsing data and load to forms.
+        function loadData () {
+            let data = JSON.parse(
+                localStorage.getItem("data")
+            )
+            if (data != null) {
+                let i1 = document.forms[0].children[1]
+                let i2 = document.forms[0].children[3]
+                i1.value = data.phoneTo
+                i2.value = data.phoneFrom
+            }
+        }
+    </script>
+</body>
+</html>

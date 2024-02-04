@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chat window</title>
+    <style>
+        #chat {
+            background-color: #333;
+            padding: 10px 10px 10px 10px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        #chat:not(.open) {
+            bottom: -195px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <button class="toggler"></button>
+        <form action="">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <br>
+            <button>SEND</button>
+        </form>
+    </div>
+    <script>
+        // Function work when load page.
+        window.onload = function () {
+            document.getElementsByClassName("toggler")[0].innerText = "▲"
+            document
+            .getElementById('chat')
+            .addEventListener('click', toogleChat)
+            restoreChatState()
+        }
+
+        // Function toogleChat - catching event of toggling.
+        function toogleChat(event) {
+            // HW2: add toggling
+            // "^" -> "X"
+            if (event.target.className == "toggler") {
+                let eventClassList = event.target.parentElement.classList
+                eventClassList.toggle('open')
+                saveChatStat(eventClassList.item(0))
+                document.getElementsByClassName("toggler")[0].innerText = "✖"
+            }
+            if (event.target.parentElement.classList.item(0) == null) {
+                document.getElementsByClassName("toggler")[0].innerText = "▲"
+            }
+        }
+
+        // Function saveChatStat - save in localStorage chat state.
+        //HW3: Create function restoreChatState()
+        function saveChatStat(state) {
+            localStorage.setItem("chat_state", state)
+        }
+        
+        // Function restoreChatState - restore chat when open page.
+        function restoreChatState () {
+            let state = localStorage.getItem("chat_state")
+            if (state == 'open') {
+                document.getElementById("chat").classList.add('open')
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REMEMBER ME</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <script>
+        // Function load - load text message (practice to use with localStorage  - getItem and SetItem).
+        function load() {
+            let views = +localStorage.getItem("views")
+            let title = document.getElementById("title")
+            if (views == 0) {
+                title.innerText = "Hi, good to see you first time!"
+            } else if (views <= 10) {
+                title.innerText = "Hi, Sales - 50%!"
+            }
+            views ++
+            localStorage.setItem("views", views)
+        }
+        // When load page call function //
+        document.body.onload = load
+    </script>
+</body>
+</html>
