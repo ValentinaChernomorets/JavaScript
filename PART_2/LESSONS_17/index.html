@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NASA | Interactive Image Gallery</title>
+    <link rel="stylesheet" href="vendor/Glider.js-master/glider.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body onload="firstViewPage()">
+  <div id="info-date">
+    <div class="date-field">
+      <label for="date-image">Set Date: </label>
+      <input type="date" id="date-image" name="date">
+      <button onclick="setDateValue()">Load image</button>
+    </div>
+  </div>
+    <div id="gallery">
+        <div class="glider-contain">
+            <div class="glider">
+            </div>
+            <button aria-label="Previous" id="prev" class="glider-prev">«</button>
+            <button aria-label="Next" id="next" class="glider-next">»</button>
+            <div role="tablist" class="dots"></div>
+          </div>
+
+    </div>
+    <script src="vendor/Glider.js-master/glider.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
